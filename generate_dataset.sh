@@ -19,7 +19,7 @@ sam_file=$1
 fasta_file=$2
 
 
-tail -n +3 $sam_file | head -n 500 | sed "s/\*/-/g" | while read line
+tail -n +3 $sam_file | sed "s/\*/-/g" | while read line
 do
     line_split=($line)
     if [ "${line_split[5]}" != "-" ]; then
