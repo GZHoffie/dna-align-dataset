@@ -31,3 +31,22 @@ cd SRR611076/
 fastq-dump --split-files SRR611076.sra
 ```
 
+We use `--split-files` because this dataset has `PAIRED` layout. After waiting some time we can see that two fastq files are generated.
+
+## Create draft alignment
+
+We use BWA as the sequence mapper. First we can download a reference genome of the species (`sequence.fasta` here) to the following.
+
+
+```bash
+bwa index -p test sequence.fasta
+bwa mem -M -t 1 test SRR611076_1.fastq SRR611076_2.fastq > SRR611076.sam
+```
+
+This creates a [.sam file](https://www.zymoresearch.com/blogs/blog/what-are-sam-and-bam-files), which records the possible position of mapping. We can then use this to generate a string alignment dataset with the script `generate_dataset.sh`. To use this we can do the following
+
+```bash
+chmod +x generate_dataset.sh
+generate_dataset.sh [sam_file] [fasta_file] > [output_directory]
+```
+
