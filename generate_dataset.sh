@@ -24,7 +24,7 @@ do
     line_split=($line)
     if [ "${line_split[5]}" != "-" ]; then
         echo "<${line_split[9]}"
-        echo ">$(samtools faidx sequence.fasta ${line_split[2]}:${line_split[3]}-$((${line_split[3]} + ${#line_split[9]} - 1)) | tail -n +2 | tr -d \\n)"
+        echo ">$(samtools faidx $fasta_file ${line_split[2]}:${line_split[3]}-$((${line_split[3]} + ${#line_split[9]} - 1)) | tail -n +2 | tr -d \\n)"
     fi
 done
 

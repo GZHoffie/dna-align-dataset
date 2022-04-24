@@ -9,7 +9,7 @@ do
 done
 
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <sam_file>"
     exit 9
 fi
